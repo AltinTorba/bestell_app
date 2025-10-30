@@ -25,7 +25,6 @@ body {
   flex-direction: column;
 }
 
-/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -109,7 +108,6 @@ nav a:hover {
   align-items: center;
 }
 
-/* Hero Image */
 .hero-section {
   position: relative;
   height: 200px;
@@ -118,9 +116,7 @@ nav a:hover {
       135deg,
       rgba(0, 123, 255, 0.7),
       rgba(0, 255, 145, 0.5)
-    ),
-    url("./assets/img/saitousai-4uVu-Zxa2SA-unsplash.jpg") center/cover
-      no-repeat;
+    );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,6 +125,17 @@ nav a:hover {
   color: rgb(235, 233, 234);
   text-align: center;
 }
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
 
 .hero-content {
   position: relative;
@@ -139,14 +146,14 @@ nav a:hover {
 .hero-title {
   font-size: 1.8rem;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 2px 2px 4px rgba(224, 21, 21, 0.5);
 }
 
 .hero-subtitle {
   /* padding-bottom: 1.5rem; */
   font-size: 1rem;
   opacity: 0.9;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 2px rgba(238, 22, 22, 0.5);
 }
 
 .restaurant-logo {
@@ -172,7 +179,6 @@ nav a:hover {
   object-position: center;
 }
 
-/* Restaurant Info */
 .restaurant-info {
   display: flex;
   justify-content: center;
@@ -208,7 +214,6 @@ nav a:hover {
   color: #ffc107;
 }
 
-/* Main Content Layout */
 .main-container {
   display: flex;
   flex-direction: column;
@@ -218,13 +223,11 @@ nav a:hover {
   gap: 1rem;
 }
 
-/* Menu Section - Left Side */
 .menu-section {
   flex: 1;
   max-width: 100%;
 }
 
-/* Category Navigation */
 .category-navigation {
   display: flex;
   gap: 0.5rem;
@@ -266,7 +269,6 @@ nav a:hover {
   text-align: center;
 }
 
-/* Dish Card Styles */
 .dish-card {
   background-color: var(--white);
   border-radius: var(--border-radius);
@@ -352,7 +354,6 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-/* Basket Section - Right Side */
 .basket-section {
   width: 100%;
   position: static;
@@ -370,7 +371,7 @@ nav a:hover {
 
 .basket-title {
   font-size: 1.3rem;
-  padding-bottom: 0.75rem;
+  padding-bottom: 1rem;
   border-bottom: 2px solid var(--primary-color);
   color: var(--primary-color);
   text-align: center;
@@ -470,7 +471,6 @@ nav a:hover {
   transform: none;
 }
 
-/* Responsive Basket for Mobile */
 .responsive-basket {
   display: flex;
   position: fixed;
@@ -481,7 +481,7 @@ nav a:hover {
   box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   z-index: 100;
-  border-top: 2px solid var(--primary-color);
+  border-top: 2px solid rgb(235, 232, 232);
 }
 
 .responsive-basket-content {
@@ -517,7 +517,6 @@ nav a:hover {
   background-color: var(--secondary-color);
 }
 
-/* Modal for Mobile Basket */
 .modal {
   display: none;
   position: fixed;
@@ -601,7 +600,6 @@ nav a:hover {
   font-size: 0.9rem;
 }
 
-/* Success Message */
 .success-message {
   display: none;
   position: fixed;
@@ -626,7 +624,6 @@ nav a:hover {
   text-align: center;
 }
 
-/* Empty State */
 .empty-basket {
   text-align: center;
   padding: 1.5rem;
@@ -639,7 +636,6 @@ nav a:hover {
   opacity: 0.5;
 }
 
-/* Quantity buttons */
 .quantity-btn {
   background-color: var(--light-gray);
   border: none;
@@ -681,7 +677,6 @@ nav a:hover {
   transform: scale(1.1);
 }
 
-/* Media Queries */
 @media (min-width: 768px) {
   header {
     padding: 1.5rem 2rem;
@@ -696,7 +691,7 @@ nav a:hover {
   }
   
   .hero-section {
-    height: 250px;
+    height: 200px;
   }
   
   .hero-title {
@@ -796,4 +791,22 @@ nav a:hover {
   .basket-section {
     width: 380px;
   }
+}
+
+.hero-subtitle .desktop-text {
+    display: none; 
+}
+
+.hero-subtitle .mobile-text {
+    display: inline; 
+}
+
+@media (min-width: 600px) {
+    .hero-subtitle .desktop-text {
+        display: inline;
+    }
+    
+    .hero-subtitle .mobile-text {
+        display: none; 
+    }
 }
