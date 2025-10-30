@@ -1,4 +1,3 @@
-// Dish card template - Nur mit + Button in der rechten oberen Ecke
 function dishCardTemplate(dish) {
     return `
         <img src="${dish.image}" alt="${dish.name}" class="dish-image">
@@ -13,7 +12,6 @@ function dishCardTemplate(dish) {
     `;
 }
 
-// Empty basket template
 function renderBasketItemsTemplate() {
     return `
         <div class="empty-basket">
@@ -24,7 +22,6 @@ function renderBasketItemsTemplate() {
     `;
 }
 
-// Basket item template
 function basketItemTemplate(item) {
     return `
     <div class="basket-item-info">
@@ -37,5 +34,38 @@ function basketItemTemplate(item) {
         <button class="quantity-btn plus" data-id="${item.name}">+</button>
         <button class="quantity-btn remove" data-id="${item.name}">🗑️</button>
     </div>
+    `;
+}
+
+function basketItemsTemplate(items) {
+    if (items.length === 0) {
+        return emptyBasketTemplate();
+    }
+    
+    return items.map(item => basketItemTemplate(item)).join('');
+}
+
+function emptyBasketTemplate() {
+    return `
+        <div class="basket-empty">
+            <p>Dein Warenkorb ist leer</p>
+        </div>
+    `;
+}
+
+function basketItemTemplate(item) {
+    return `
+        <div class="basket-item" data-item-name="${item.name}">
+            <div class="basket-item-info">
+                <h4>${item.name}</h4>
+                <p>€${item.price.toFixed(2)}</p>
+            </div>
+            <div class="basket-item-controls">
+                <button class="minus" type="button">-</button>
+                <span class="quantity">${item.quantity}</span>
+                <button class="plus" type="button">+</button>
+                <button class="remove" type="button">🗑️</button>
+            </div>
+        </div>
     `;
 }

@@ -138,38 +138,35 @@ function updateBasket() {
     if (modalCheckoutBtn) modalCheckoutBtn.disabled = !hasItems;
 }
 
+function setupBasketItemEvents(basketItemElement, item) {
+    const plusBtn = basketItemElement.querySelector('.plus');
+    const minusBtn = basketItemElement.querySelector('.minus');
+    const removeBtn = basketItemElement.querySelector('.remove');
+    
+    if (plusBtn) {
+        plusBtn.addEventListener('click', () => addToBasket(item.name));
+    }
+    
+    if (minusBtn) {
+        minusBtn.addEventListener('click', () => removeFromBasket(item.name));
+    }
+    
+    if (removeBtn) {
+        removeBtn.addEventListener('click', () => removeFromBasket(item.name, true));
+    }
+}
+
 function renderBasketItems(container) {
     if (!container) return;
     
-    if (basket.length === 0) {
-        container.innerHTML = renderBasketItemsTemplate();
-        return;
+    container.innerHTML = basketItemsTemplate(basket);
+    
+    if (basket.length > 0) {
+        const basketItemElements = container.querySelectorAll('.basket-item');
+        basketItemElements.forEach((element, index) => {
+            setupBasketItemEvents(element, basket[index]);
+        });
     }
-    
-    container.innerHTML = '';
-    
-    basket.forEach(item => {
-        const basketItem = document.createElement('div');
-        basketItem.className = 'basket-item';
-        basketItem.innerHTML = basketItemTemplate(item);
-        container.appendChild(basketItem);
-        
-        const plusBtn = basketItem.querySelector('.plus');
-        const minusBtn = basketItem.querySelector('.minus');
-        const removeBtn = basketItem.querySelector('.remove');
-        
-        if (plusBtn) {
-            plusBtn.addEventListener('click', () => addToBasket(item.name));
-        }
-        
-        if (minusBtn) {
-            minusBtn.addEventListener('click', () => removeFromBasket(item.name));
-        }
-        
-        if (removeBtn) {
-            removeBtn.addEventListener('click', () => removeFromBasket(item.name, true));
-        }
-    });
 }
 
 function calculateSubtotal() {
@@ -225,10 +222,4 @@ function handleCheckout() {
     if (basketModal) {
         basketModal.classList.remove('active');
     }
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
 }
